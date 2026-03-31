@@ -221,9 +221,9 @@ const AudioManager = (function () {
 
   const sounds = {
     jump:     makeAudio('assets/jump.wav'),
-    score:    makeAudio('assets/jump.wav'),   // reuse jump sound for score; swap if a dedicated asset is added
-    gameOver: makeAudio('assets/game_over.wav'),
-    music:    makeAudio(''),                  // no music asset yet; plays silently
+    score:    makeAudio('assets/jump.wav'),
+    gameOver: null,                           // no game over sound — message shown on screen instead
+    music:    makeAudio('https://opengameart.org/sites/default/files/Fluffing%20a%20Duck.mp3'),
   };
 
   return {
@@ -522,21 +522,26 @@ function renderGameOver(ctx, canvas, score, highScore) {
   const cx = canvas.width / 2;
   const cy = (canvas.height - CONFIG.FOOTER_HEIGHT) / 2;
 
-  ctx.font = 'bold 48px monospace';
+  // Bold flashing-style banner
+  ctx.font = 'bold 56px monospace';
   ctx.fillStyle = '#ff4444';
-  ctx.fillText('Game Over', cx, cy - 60);
+  ctx.fillText('💀 GAME OVER 💀', cx, cy - 70);
+
+  ctx.font = '22px monospace';
+  ctx.fillStyle = '#ffcccc';
+  ctx.fillText('Ghosty has been squished!', cx, cy - 20);
 
   ctx.font = '26px monospace';
   ctx.fillStyle = '#ffffff';
-  ctx.fillText(`Score: ${score}`, cx, cy);
+  ctx.fillText(`Score: ${score}`, cx, cy + 30);
 
   ctx.font = '22px monospace';
   ctx.fillStyle = '#FFD700';
-  ctx.fillText(`Best: ${highScore}`, cx, cy + 45);
+  ctx.fillText(`Best: ${highScore}`, cx, cy + 70);
 
   ctx.font = '20px monospace';
   ctx.fillStyle = '#cccccc';
-  ctx.fillText('Press Space / Click / Tap to Restart', cx, cy + 95);
+  ctx.fillText('Press Space / Click / Tap to Restart', cx, cy + 115);
 
   ctx.restore();
 }

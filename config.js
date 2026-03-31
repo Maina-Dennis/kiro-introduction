@@ -3,7 +3,7 @@ const CONFIG = {
   JUMP_VELOCITY: -9,     // px/frame (negative = up)
   PIPE_SPEED: 3,         // px/frame
   PIPE_INTERVAL: 90,     // frames between pipe spawns
-  GAP_HEIGHT: 160,       // px
+  GAP_HEIGHT: 260,       // px — wide enough to pass through multiple times
   GAP_MIN_Y: 80,         // minimum gapTop from canvas top
   PIPE_WIDTH: 60,        // px
   FOOTER_HEIGHT: 40,     // px — dark bar at bottom
